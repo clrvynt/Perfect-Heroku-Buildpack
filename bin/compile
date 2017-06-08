@@ -149,7 +149,7 @@ step Install Swift into BuildDir
 mkdir /app/.test/
 rsync -Pa $CACHE_DIR/.test/ $BUILD_DIR/.test/ > $BUILD_DIR/build.log || fail Renaming Swift dir
 say Ok
-
+swift --version
 step Installing apt build dependencies into build environment
 rsync -Pa $BUILD_DIR/.test/ /app/.test/ > $BUILD_DIR/build.log || fail rsync
 say Ok
