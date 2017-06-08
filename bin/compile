@@ -57,15 +57,15 @@ function untar_rt() {
 
 pushd .
 
-step Checking stack
-if [ ! -f /etc/lsb-release ]; then
-    fail Sorry, only Ubuntu 14.04 is currently supported
-  fi
-. /etc/lsb-release
-if [ "$DISTRIB_RELEASE" != "14.04" ]; then
-    fail Sorry, only Ubuntu 14.04 is currently supported
-  fi
-say Ok.  Ubuntu 14.04 found
+#step Checking stack
+#if [ ! -f /etc/lsb-release ]; then
+#    fail Sorry, only Ubuntu 14.04 is currently supported
+#  fi
+#. /etc/lsb-release
+#if [ "$DISTRIB_RELEASE" != "14.04" ]; then
+#    fail Sorry, only Ubuntu 14.04 is currently supported
+#  fi
+#say Ok.  Ubuntu 14.04 found
 
 step Setting environment
 BUILD_DIR=$1
