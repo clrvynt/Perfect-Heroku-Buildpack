@@ -119,13 +119,7 @@ apt-get $APT_OPTIONS -y --force-yes -d install --reinstall clang | indent
 apt-get $APT_OPTIONS -y --force-yes -d install --reinstall libicu-dev | indent
 apt-get $APT_OPTIONS -y --force-yes -d install --reinstall libssl-dev | indent
 apt-get $APT_OPTIONS -y --force-yes -d install --reinstall uuid-dev | indent
-apt-get install make
-wget https://www.openssl.org/source/openssl-1.0.2g.tar.gz
-tar -xzvf openssl-1.0.2g.tar.gz
-cd openssl-1.0.2g
-./config
-make install
-ln -sf /usr/local/ssl/bin/openssl `which openssl`
+
 
 openssl version -a
 mkdir -p $BUILD_DIR/.test
