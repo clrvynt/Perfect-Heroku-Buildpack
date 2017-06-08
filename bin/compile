@@ -149,7 +149,7 @@ step Install Swift into BuildDir
 mkdir /app/.test/
 rsync -Pa $CACHE_DIR/.test/ $BUILD_DIR/.test/ > $BUILD_DIR/build.log || fail Renaming Swift dir
 say Ok
-swift --version
+
 step Installing apt build dependencies into build environment
 rsync -Pa $BUILD_DIR/.test/ /app/.test/ > $BUILD_DIR/build.log || fail rsync
 say Ok
@@ -157,6 +157,7 @@ say Ok
 step Making application
 cd $BUILD_DIR/
 say "build with custom library paths"
+swift --version
 swift build --configuration release -Xlinker -L/app/.test/usr/lib -Xcc -I/app/.test/usr/include/ > $BUILD_DIR/build.log 2>&1 || fail swift build --configuration release
 say Ok
 
