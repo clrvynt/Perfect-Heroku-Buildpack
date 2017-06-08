@@ -164,6 +164,7 @@ mkdir -p "clang-$CLANG_VERSION"
 curl http://llvm.org/releases/$CLANG_VERSION/clang+llvm-$CLANG_VERSION-x86_64-linux-gnu-ubuntu-16.04.tar.xz -s -L | xz -d -c | tar x -C clang-$CLANG_VERSION &> /dev/null
 cd $BUILD_DIR/
 export PATH="$CACHE_DIR/clang-$CLANG_VERSION/clang+llvm-$CLANG_VERSION-x86_64-linux-gnu-ubuntu-16.04/bin:$PATH"
+export LD_LIBRARY_PATH="$CACHE_DIR/clang-$CLANG_VERSION/clang+llvm-$CLANG_VERSION-x86_64-linux-gnu-ubuntu-16.04/lib:$LD_LIBRARY_PATH"
 say Ok
 
 step Making application
