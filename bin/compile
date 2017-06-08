@@ -71,6 +71,7 @@ step Setting environment
 BUILD_DIR=$1
 CACHE_DIR=$2
 SCRIPT_VER=3
+CLANG_VERSION=3.8.1
 SWIFT_VER="swift-3.1.1-RELEASE"
 SWIFT_VER_LC="swift-3.1.1-release"
 #SWIFT_VER="swift-DEVELOPMENT-SNAPSHOT-2016-06-20-a"
@@ -115,7 +116,7 @@ APT_OPTIONS="-o debug::nolocking=true -o dir::cache=$APT_CACHE_DIR -o dir::state
 apt-get $APT_OPTIONS update | indent
 
 
-apt-get install clang
+apt-get $APT_OPTIONS -y --force-yes -d install --reinstall clang | indent
 apt-get $APT_OPTIONS -y --force-yes -d install --reinstall python | indent
 apt-get $APT_OPTIONS -y --force-yes -d install --reinstall libicu-dev | indent
 apt-get $APT_OPTIONS -y --force-yes -d install --reinstall icu-devtools | indent
@@ -154,6 +155,15 @@ say Ok
 
 step Installing apt build dependencies into build environment
 rsync -Pa $BUILD_DIR/.test/ /app/.test/ > $BUILD_DIR/build.log || fail rsync
+say Ok
+
+step Install Clang
+cd $CACHE_DIR
+say "Installing clang-$CLANG_VERSION"
+mkdir -p "clang-$CLANG_VERSION"
+curl http://llvm.org/releases/$CLANG_VERSION/clang+llvm-$CLANG_VERSION-x86_64-linux-gnu-ubuntu-16.04.tar.xz -s -L | xz -d -c | tar x -C clang-$CLANG_VERSION &> /dev/null
+cd $BUILD_DIR/
+export PATH="$CACHE_DIR/clang-$CLANG_VERSION/clang+llvm-$CLANG_VERSION-x86_64-linux-gnu-ubuntu-16.04/bin:$PATH"
 say Ok
 
 step Making application
